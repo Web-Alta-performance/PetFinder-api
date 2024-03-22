@@ -5,3 +5,5 @@ docker-compose.yml
 node_modules
 package-lock.json
 .env.example
+.git
+.gitignore
