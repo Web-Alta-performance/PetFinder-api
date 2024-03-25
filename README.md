@@ -10,7 +10,9 @@ Seções:
 - [Equipe](#equipe)
 
 ## Sobre a API
-A API foi criada usando a biblioteca `express` para o roteamento dos pedidos HTTP, com um banco de dados NoSQL `MongoDB`, hospedado via `Atlas`, conectados utilizando a biblioteca `mongoose`.
+A API foi criada usando a biblioteca `express` para o roteamento dos pedidos HTTP, com um banco de dados NoSQL `MongoDB`, hospedado via `Atlas`, conectados utilizando a biblioteca `Prisma`.
+
+A API foi montada utilizando como base os princípios [SOLID](https://en.wikipedia.org/wiki/SOLID) (ou pelo menos tenta ser)
 
 ## Requisitos
 Para executar/modificar a API, será necessário o `Node.js` instalado.
