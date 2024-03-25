@@ -10,13 +10,17 @@ Seções:
 - [Equipe](#equipe)
 
 ## Sobre a API
-A API foi criada usando a biblioteca `express` para o roteamento dos pedidos HTTP, com um banco de dados NoSQL `MongoDB`, conectados utilizando a biblioteca `Prisma`.
+A API foi criada usando a biblioteca `express` para o roteamento dos pedidos HTTP, com um banco de dados NoSQL `MongoDB`, hospedado via `Atlas`, conectados utilizando a biblioteca `mongoose`.
 
 ## Requisitos
-Para executar/modificar a API, será necessário o `Node.js` e o `Docker` instalados.
+Para executar/modificar a API, será necessário o `Node.js` instalado.
 
 ## Como usar a API
-Para executar a API, basta executar o código `docker compose up`.
+Se quiser se aventurar com a API e fazer seus testes, primeiro precisa criar o arquivo `.env` e preenchê-lo de acordo com o `.env.example`.
+Após isso, abra o terminal na pasta raíz (a pasta na qual você clonou o repositório), e insira o comando `npm install`, para instalar todas as dependências.
+Você pode testar as rotas utilizando o `Insomnia` ou `Postman`.
+
+Por último, execute o comando `npm run dev`, ou `npm run start` para iniciar a API.
 
 ## Equipe:
 * Carlos Alberto Ramalho - 01585045
