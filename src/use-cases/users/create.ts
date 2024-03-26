@@ -14,7 +14,7 @@ interface CreateUseCaseResponse {
     user: User
 }
 
-export class CreateUseCase {
+export class UserCreateUseCase {
     constructor(private usersRepository: UsersRepository) {}
 
     async execute({ name, email, password }: CreateUseCaseParams): Promise<CreateUseCaseResponse> {
