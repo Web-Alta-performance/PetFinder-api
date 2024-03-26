@@ -30,7 +30,8 @@ Por último, execute o comando `npm run dev`, ou `npm run start` para iniciar a 
 * Diego Henrique Rodrigues - 01650828
 * Eric Mendonça Batista de Santana - 01447877
 * Gustavo Portela Pachêco - 01604533
-* João Guilherme Caetano dos Santos 01481382
+* Jessica Nascimento Pessoa da Silva - 01717533
+* João Guilherme Caetano dos Santos - 01481382
 * João Victor Mendonça da Silva - 01480878
 * José Gabriel de Oliveira Lino - 01609620
 * Laryssa Rayanne Souza Martins - 01612424
