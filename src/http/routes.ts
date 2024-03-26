@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { create } from "./controllers/users/create";
+import { userRoutes } from "./controllers/users/routes";
 
 const appRoutes = Router();
 
-appRoutes.get('/', (_, reply) => reply.status(200).send('Hello, world!'));
-appRoutes.post('/users', create);
+appRoutes.use('/users', userRoutes);
 
 export { appRoutes };
