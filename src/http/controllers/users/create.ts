@@ -1,8 +1,9 @@
+import { UserAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error";
 import { makeCreateUseCase } from "@/use-cases/users/factories/make-create-use-case";
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 
-export async function create(request: Request, response: Response) {
+export async function create(request: Request, response: Response, next: NextFunction) {
     const registerBodySchema = z.object({
         name: z.string(),
         email: z.string().email(),
@@ -15,9 +16,14 @@ export async function create(request: Request, response: Response) {
         const registerUseCase = makeCreateUseCase();
 
         await registerUseCase.execute({ name, email, password });
+        
+        return response.status(201).send();
     } catch (error) {
-        throw error
+        if (error instanceof UserAlreadyExistsError) {
+            return response.status(401).send({ message: error.message });
+        }
+
+        next(error);
     }
 
-    return response.status(201).send();
 }
