@@ -1,6 +1,7 @@
 import { Pet, Prisma } from "@prisma/client";
 import { PetsRepository } from "../pets-repository";
 import { prisma } from "@/lib/prisma";
+import { NotFoundError } from "@/use-cases/errors/not-found-error";
 
 export class PrismaPetsRepository implements PetsRepository {
     async create(data: Prisma.PetCreateInput): Promise<Pet> {
@@ -9,14 +10,18 @@ export class PrismaPetsRepository implements PetsRepository {
     }
 
     async disable(id: string): Promise<Pet | null> {
-        const pet = await prisma.pet.update({
-            where: { id },
-            data: { active: false }
-        });
+        
+        try {
+            const pet = await prisma.pet.update({
+                where: { id },
+                data: { active: false }
+            });
+            if (!pet) return null;
+            return pet;
+        } catch (_) {
+            throw new NotFoundError()
+        }
 
-        if (!pet) return null;
-
-        return pet;
     }
 
     async findById(id: string): Promise<Pet | null> {
