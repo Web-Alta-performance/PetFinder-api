@@ -11,7 +11,7 @@ appRoutes.get('/', (_, reply) => reply.status(200).send('Hello, world!'));
 app.use('/', appRoutes);
 
 // Error middleware
-app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
+app.use((error: Error, request: Request, response: Response, _: NextFunction) => {
     if (error instanceof ZodError) {
         return response
             .status(400)
