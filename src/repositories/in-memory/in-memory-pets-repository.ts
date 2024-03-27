@@ -3,12 +3,14 @@ import { PetsRepository } from "../pets-repository";
 
 export class InMemoryPetsRepository implements PetsRepository {
     public items: Pet[] = [];
+    public autoIncrement = 1;
 
     async create(data: Prisma.PetCreateInput): Promise<Pet> {
 
+
         const pet: Pet = {
-            id: 'pet-1',
-            userId: 'user-1',
+            id: `pet-${this.autoIncrement}`,
+            userId: `user-${this.autoIncrement++}`,
             name: data.name,
             size: data.size,
 
