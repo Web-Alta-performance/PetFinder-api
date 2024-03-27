@@ -9,7 +9,7 @@ export class PetFetchUseCase {
     constructor(private petRepository: PetsRepository) {}
 
     async execute(): Promise<PetFetchUseCaseResponse> {
-        const pets = await this.petRepository.findAll();
+        const pets = await this.petRepository.fetch();
         return {
             pets
         };

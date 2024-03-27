@@ -5,5 +5,5 @@ export interface PetsRepository {
     disable(id: string): Promise<Pet | null>
     changeOwner(petId: string, userId: string): Promise<Pet | null>
     findById(id: string): Promise<Pet | null>
-    findAll(): Promise<Pet[]>
+    fetch(): Promise<Pet[]>
 }

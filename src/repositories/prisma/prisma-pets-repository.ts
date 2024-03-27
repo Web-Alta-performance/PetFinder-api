@@ -29,7 +29,7 @@ export class PrismaPetsRepository implements PetsRepository {
         return pet;
     }
 
-    async findAll(): Promise<Pet[]> {
+    async fetch(): Promise<Pet[]> {
         const pets = await prisma.pet.findMany({ where: { active: true }});
         return pets;
     }

@@ -41,7 +41,7 @@ export class InMemoryPetsRepository implements PetsRepository {
         return pet;
     }
     
-    async findAll(): Promise<Pet[]> {
+    async fetch(): Promise<Pet[]> {
         let pets = []
         for (const pet of this.items) {
             if (pet.active === true) {
