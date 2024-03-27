@@ -1,6 +1,7 @@
 # PROJETO - ALTA PERFORMANCE WEB
 
 ### Acesse o repositório do aplicativo PetFinder [aqui](https://github.com/Web-Alta-performance/PetFinder.git).
+### Acesse o repositório do website [aqui](https://github.com/Web-Alta-performance/PetFinder-website).
 
 # API do aplicativo PetFinder
 Seções:
