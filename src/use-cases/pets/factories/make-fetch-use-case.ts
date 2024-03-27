@@ -1,9 +1,9 @@
 import { PrismaPetsRepository } from "@/repositories/prisma/prisma-pets-repository";
-import { PetFindUseCase } from "../find";
+import { PetFetchUseCase } from "../fetch";
 
-export function makePetFindUseCase() {
+export function makePetFetchUseCase() {
     const repository = new PrismaPetsRepository();
-    const useCase = new PetFindUseCase(repository);
+    const useCase = new PetFetchUseCase(repository);
     
     return useCase;
 }
