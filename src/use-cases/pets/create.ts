@@ -3,7 +3,7 @@ import { Pet, Prisma } from "@prisma/client";
 
 interface CreateUseCaseParams {
     name: string,
-    userId: Prisma.UserWhereUniqueInput
+    userId: string,
     size: string,
     about?: string,
     breed?: string,
@@ -21,7 +21,7 @@ export class PetCreateUseCase {
         const pet = await this.petRepository.create({
             name,
             size,
-            owner: { connect: userId },
+            userId,
             about,
             breed,
             age,

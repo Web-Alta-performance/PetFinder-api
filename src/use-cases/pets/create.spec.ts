@@ -18,7 +18,7 @@ describe('Pet Create Use Case', () => {
         const { pet } = await sut.execute({
             name: 'dog',
             size: 'medium',
-            userId: { id: 'user-1' },
+            userId: 'user-1',
         })
 
         expect(pet.id).toBe('pet-1');
