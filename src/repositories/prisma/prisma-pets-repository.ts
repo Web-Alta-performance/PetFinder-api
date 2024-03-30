@@ -1,10 +1,10 @@
 import { Pet, Prisma } from "@prisma/client";
-import { PetCreateOptions, PetsRepository } from "../pets-repository";
+import { PetsRepository } from "../pets-repository";
 import { prisma } from "@/lib/prisma";
 import { NotFoundError } from "@/use-cases/errors/not-found-error";
 
 export class PrismaPetsRepository implements PetsRepository {
-    async create({name, size, age, breed, about, userId}: PetCreateOptions): Promise<Pet> {
+    async create({name, size, age, breed, about, userId}: Prisma.PetUncheckedCreateInput): Promise<Pet> {
         const pet = await prisma.pet.create({
             data: {
                 name,
