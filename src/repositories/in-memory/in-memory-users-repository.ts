@@ -30,4 +30,12 @@ export class InMemoryUsersRepository implements UsersRepository {
         if (!user) return null;
         return user;
     }
+
+    async fetch(): Promise<User[]> {
+        let users = []
+        for (const user of this.items) {
+            users.push(user);
+        }
+        return users;
+    }
 }
