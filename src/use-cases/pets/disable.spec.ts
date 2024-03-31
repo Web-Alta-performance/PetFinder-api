@@ -16,7 +16,7 @@ describe('Pet Disable Use Case', () => {
         const pet = await repository.create({
             name: 'pet',
             size: 'size',
-            owner: { connect: { id: 'user' }}
+            userId: 'user'
         });
 
         await sut.execute(pet.id);
@@ -27,7 +27,7 @@ describe('Pet Disable Use Case', () => {
         const pet = await repository.create({
             name: 'pet',
             size: 'size',
-            owner: { connect: { id: 'user' }}
+            userId: 'user'
         });
 
         await sut.execute(pet.id);
@@ -40,7 +40,7 @@ describe('Pet Disable Use Case', () => {
         const pet = await repository.create({
             name: 'pet',
             size: 'size',
-            owner: { connect: { id: 'user' }}
+            userId: 'user'
         });
 
         await sut.execute(pet.id);

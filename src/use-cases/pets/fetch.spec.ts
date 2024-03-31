@@ -15,7 +15,7 @@ describe('Pet Fetch Use Case', () => {
         await repository.create({
             name: 'pet1',
             size: 'size',
-            owner: { connect: { id: 'user-1' }}
+            userId: 'user-1'
         });
 
         const { pets } = await sut.execute();

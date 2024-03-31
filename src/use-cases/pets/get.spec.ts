@@ -16,7 +16,7 @@ describe('Pet Get Use Case', () => {
         const createdPet = await repository.create({
             name: 'cat',
             size: 'small',
-            owner: { connect: { id: 'user-1' }}
+            userId: 'user-1'
         });
 
         const { pet } = await sut.execute('pet-1');
@@ -27,7 +27,7 @@ describe('Pet Get Use Case', () => {
         await repository.create({
             name: 'pet',
             size: 'size',
-            owner: { connect: { id: 'user-1' }}
+            userId: 'user-1'
         });
 
         await expect(sut.execute('wrong-id')).rejects.toBeInstanceOf(NotFoundError);
