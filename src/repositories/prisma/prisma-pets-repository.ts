@@ -43,13 +43,13 @@ export class PrismaPetsRepository implements PetsRepository {
         return pets;
     }
 
-    async changeOwner(petId: string, userId: string): Promise<Pet | null> {
-        const pet = await prisma.pet.update({
+    async changeOwner(petId: string, userId: string): Promise<boolean> {
+        const { count } = await prisma.pet.updateMany({
             where: { id: petId },
             data: { userId }
         });
 
-        return pet;
+        return count > 0;
     }
 
 }

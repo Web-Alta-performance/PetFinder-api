@@ -51,11 +51,14 @@ export class InMemoryPetsRepository implements PetsRepository {
         return pets;
     }
 
-    async changeOwner(petId: string, userId: string): Promise<Pet | null> {
-        const pet = this.items.find((item) => item.id === petId && item.active === true);
-        if (!pet) return null;
-        
-        pet.userId = userId;
-        return pet;
+    async changeOwner(petId: string, userId: string): Promise<boolean> {
+        let count = 0;
+        for (const pet of this.items) {
+            if (pet.id === petId && pet.active) {
+                pet.userId = userId;
+                count++;
+            }
+        }
+        return count > 0;
     }
 }
