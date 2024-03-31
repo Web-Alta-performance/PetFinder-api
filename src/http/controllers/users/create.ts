@@ -4,16 +4,17 @@ import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 
 export async function create(request: Request, response: Response, next: NextFunction) {
+    
     const registerBodySchema = z.object({
         name: z.string(),
         email: z.string().email(),
         password: z.string()
     });
 
-    const { name, email, password } = registerBodySchema.parse(request.body);
-
+    const registerUseCase = makeUserCreateUseCase();
+    
     try {
-        const registerUseCase = makeUserCreateUseCase();
+        const { name, email, password } = registerBodySchema.parse(request.body);
 
         await registerUseCase.execute({ name, email, password });
         

@@ -8,10 +8,10 @@ export async function get(request: Request, response: Response, next: NextFuncti
         userId: z.string()
     });
 
-    const { userId } = registerParamsSchema.parse(request.params);
     const getUseCase = makeUserGetUseCase();
-
+    
     try {
+        const { userId } = registerParamsSchema.parse(request.params);
         const user = await getUseCase.execute(userId);
         
         return response.status(200).send(user);

@@ -8,11 +8,11 @@ export async function authenticate(request: Request, response: Response, next: N
         email: z.string().email(),
         password: z.string()
     });
-
-    const { email, password } = registerBodySchema.parse(request.body);
-
+    
+    const registerUseCase = makeUserAuthenticateUseCase();
+    
     try {
-        const registerUseCase = makeUserAuthenticateUseCase();
+        const { email, password } = registerBodySchema.parse(request.body);
 
         await registerUseCase.execute({ email, password });
         
