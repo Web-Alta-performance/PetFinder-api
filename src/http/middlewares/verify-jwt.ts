@@ -2,14 +2,6 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
 import { env } from '@/env'
 import { NextFunction, Request, Response } from 'express'
 
-declare global {
-    namespace Express {
-        interface Request {
-            userId: string;
-        }
-    }
-}
-
 export const verifyJWT = async (request: Request, response: Response, next: NextFunction) => {
     const authHeader = request.headers.authorization;
     if (!authHeader) {
