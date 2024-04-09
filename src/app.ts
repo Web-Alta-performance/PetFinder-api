@@ -1,29 +1,15 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import { appRoutes } from './http/routes';
-import { ZodError } from 'zod';
-import { env } from './env';
+import { errorHandler } from './http/middlewares/error-handler';
+import cors from 'cors';
 
 export const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 appRoutes.get('/', (_, reply) => reply.status(200).send('Hello, world!'));
 app.use('/', appRoutes);
 
 // Error middleware
-app.use((error: Error, _request: Request, response: Response, _: NextFunction) => {
-    if (error instanceof ZodError) {
-        return response
-            .status(400)
-            .send({
-                message: 'Validation error.',
-                issues: error.format()
-            });
-    }
-
-    if (env.NODE_ENV !== 'production') {
-        console.error(error);
-    }
-
-    return response.status(500).send({ message: 'Internal server error.' });
-})
+app.use(errorHandler)
