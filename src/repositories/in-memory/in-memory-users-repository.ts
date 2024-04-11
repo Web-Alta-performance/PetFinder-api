@@ -16,17 +16,32 @@ export class InMemoryUsersRepository implements UsersRepository {
         this.items.push(user);
         return user;
     }
-    
+
+    async remove(userId: string) {
+        let count = 0;
+        const filtered = this.items.filter((user) => {
+            if (user.id === userId) {
+                count++;
+                return false;
+            }
+            return true;
+        });
+
+        this.items = filtered;
+
+        return count > 0;
+    }
+
     async findByEmail(email: string): Promise<User | null> {
         const user = this.items.find((item) => item.email === email);
-        
+
         if (!user) return null;
         return user;
     }
 
     async findById(id: string): Promise<User | null> {
         const user = this.items.find((item) => item.id === id);
-        
+
         if (!user) return null;
         return user;
     }
