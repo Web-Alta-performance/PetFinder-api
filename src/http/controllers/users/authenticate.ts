@@ -6,17 +6,17 @@ import jwt from 'jsonwebtoken';
 import { z } from 'zod';
 
 export async function authenticate(request: Request, response: Response, next: NextFunction) {
-    const registerBodySchema = z.object({
+    const authenticateBodySchema = z.object({
         email: z.string().email(),
         password: z.string()
     });
 
-    const registerUseCase = makeUserAuthenticateUseCase();
+    const authenticateUseCase = makeUserAuthenticateUseCase();
 
     try {
-        const { email, password } = registerBodySchema.parse(request.body);
+        const { email, password } = authenticateBodySchema.parse(request.body);
 
-        const { user } = await registerUseCase.execute({ email, password });
+        const { user } = await authenticateUseCase.execute({ email, password });
 
         const token = jwt.sign({
             id: user.id
