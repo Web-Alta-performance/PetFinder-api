@@ -6,7 +6,7 @@ import { NotFoundError } from "../errors/not-found-error";
 let usersRepository: InMemoryUsersRepository;
 let sut: RemoveUserUseCase;
 
-describe('Create User Use Case', () => {
+describe('Remove User Use Case', () => {
     beforeEach(() => {
         usersRepository = new InMemoryUsersRepository();
         sut = new RemoveUserUseCase(usersRepository);
