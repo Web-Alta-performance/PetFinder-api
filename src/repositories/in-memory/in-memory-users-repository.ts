@@ -1,5 +1,5 @@
 import { Prisma, User } from '@prisma/client';
-import { UsersRepository } from '../users-repository';
+import { UserUpdateParams, UsersRepository } from '../users-repository';
 
 export class InMemoryUsersRepository implements UsersRepository {
     public items: User[] = [];
@@ -52,5 +52,17 @@ export class InMemoryUsersRepository implements UsersRepository {
             users.push(user);
         }
         return users;
+    }
+
+    async update(email: string, data: UserUpdateParams): Promise<User | null> {
+        for (let user of this.items) {
+            if (user.email === email) {
+                user.name = data.name ?? user.name;
+                user.password_hash = data.password_hash ?? user.password_hash;
+                user.phone_number = data.phone_number ?? user.phone_number;
+                return user;
+            }
+        }
+        return null;
     }
 }
