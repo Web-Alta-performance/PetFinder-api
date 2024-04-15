@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { Prisma, User } from '@prisma/client';
-import { UsersRepository } from '../users-repository';
+import { UsersRepository, UserUpdateParams } from '../users-repository';
 
 export class PrismaUsersRepository implements UsersRepository {
     async create(data: Prisma.UserCreateInput): Promise<User> {
@@ -8,9 +8,9 @@ export class PrismaUsersRepository implements UsersRepository {
         return user;
     }
 
-    async remove(userId: string) {
+    async remove(id: string) {
         const { count } = await prisma.user.deleteMany({
-            where: { id: userId }
+            where: { id: id }
         });
         return count > 0;
     }
@@ -28,5 +28,14 @@ export class PrismaUsersRepository implements UsersRepository {
     async fetch(): Promise<User[]> {
         const users = await prisma.user.findMany();
         return users;
+    }
+
+    async update(email: string, data: UserUpdateParams): Promise<User | null> {
+        const user = await prisma.user.update({
+            where: { email },
+            data,
+        });
+
+        return user;
     }
 }
