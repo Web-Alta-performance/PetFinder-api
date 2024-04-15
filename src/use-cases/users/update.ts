@@ -20,7 +20,7 @@ export class UpdateUserUseCase {
             name: name || undefined,
             password_hash,
             phone_number: phone_number || undefined
-        });
+        }).catch(_ => { throw new NotFoundError(); });
 
         if (!user) {
             throw new NotFoundError();
